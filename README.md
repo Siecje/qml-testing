@@ -3,11 +3,10 @@ git clone https://github.com/siecje/qml-testing
 python -m venv osnap
 call osnap\Scripts\activate.bat
 pip install osnap
-pip install requests jinja2
 (osnap) C:\Users\cody\Desktop>pip freeze
 Jinja2==2.8
 MarkupSafe==0.23
-osnap==0.0.2
+osnap==0.0.5
 requests==2.11.1
 ```
 
