@@ -40,7 +40,6 @@ function onLoad(){
     // Populate Last Server
     loginManager.lastServer.connect(function(lastServer){
         if (lastServer != ""){
-            console.log(lastServer);
             cmbServers.currentIndex = cmbServers.find(lastServer);
         }
     });
