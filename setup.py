@@ -12,7 +12,7 @@ BuildOptions = {"packages": ["PyQt5.QtNetwork"],
                              "virtualenv", "boto", "alabaster", "bs4", "jinja2", "sphinx", "sphinx_rtd_theme", "sqlalchemy",
                              ],
                 "optimize": 2,
-                "include_files": "",
+                "include_files": ["Main.qml", "Users.qml", "LoginManager.qml", "Login.qml", "login.js"],
                 "include_msvcr": True, # Include msvcr100.dll
                 }
 
