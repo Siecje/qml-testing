@@ -1,8 +1,12 @@
 import os
+import platform
+import shutil
 import subprocess
 import sys
 
 from cx_Freeze import setup
+
+from setup import BuildOptions, Executables, Name, Description, Removex64Paths, version
 
 THIS_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -30,16 +34,25 @@ def BuildMsi(Naame, BuildDir, WxsPath, WxsName):
     ]
     p = subprocess.run(args)
 
-    
+
 if __name__ == "__main__":
-    from setup import BuildOptions, Executables, Name, Description, version
+    shutil.rmtree(os.path.join(THIS_DIR, "build"), ignore_errors = True)
+    
+    python32 = platform.architecture()[0] == "32bit"
+    if python32:
+        origPath = os.environ["PATH"]
+        newPath = Removex64Paths(os.environ["PATH"])
+        os.environ["PATH"] = r"C:\Users\cody\Desktop\pynsist\nsist\msvcrt\x86" + os.pathsep + newPath
+
     BuildExe(version,
              Name,
              Description,
              BuildOptions,
              Executables
             )
-    buildDir = os.path.join(THIS_DIR, "build", "exe.win-amd64-3.5")
+    if python32:
+        os.environ["PATH"] = origPath
+    buildDir = os.path.join(THIS_DIR, "build", "exe.win32-3.5")
     wxsPath = os.path.join(THIS_DIR, "wix", "QMLApp.wxs")
     wxsName = "QMLApp"
     BuildMsi(Name, buildDir, wxsPath, wxsName)

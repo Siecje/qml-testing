@@ -28,7 +28,32 @@ Description = "QML Application"
 
 version = "0.0.1"
 
+BadPaths = [
+    "C:\\Program Files\\",
+    'Anaconda3',
+]
+
+
+def Removex64Paths(PathStr):
+    pathList = PathStr.split(";")
+    newPath = []
+    for path in pathList:
+        for badPath in BadPaths:
+            if badPath in path:
+                break
+        else:
+            newPath.append(path)
+    return ";".join(newPath)
+
+
 if __name__ == "__main__":
+    import platform
+    python32 = platform.architecture()[0] == "32bit"
+    if python32:
+        origPath = os.environ["PATH"]
+        newPath = Removex64Paths(os.environ["PATH"])
+        os.environ["PATH"] = r"C:\Users\cody\Desktop\pynsist\nsist\msvcrt\x86" + os.pathsep + newPath
+    
     setup(name = Name,
           version = version,
           description = Description,
@@ -36,3 +61,5 @@ if __name__ == "__main__":
                          ),
           executables = Executables
           )
+    if python32:
+        os.environ["PATH"] = origPath
