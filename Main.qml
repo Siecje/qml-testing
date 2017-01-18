@@ -1,34 +1,53 @@
-import QtQuick 2.3
+import QtQuick 2.7
 import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.3
 
 ApplicationWindow {
     id: appWindow
     objectName: "appWindow"
+    title: "QML Application"
     visible: true
     width: 800;
     height: 600;
-    title: "QML Application"
-    
-    Rectangle {
-        id: mainRect
-        objectName: "mainRect"
+    minimumWidth: mainRect.implicitWidth;
+    minimumHeight: mainRect.implicitHeight;
+
+    Users {
+        id: usersPage
+        visible: false
+    }
+
+    Login {
+        id: loginPage
+    }
+
+    ColumnLayout {
         anchors.fill: parent
-        Loader {
-            id: pageLoader
-            objectName: "pageLoader"
-            focus: true
-            anchors.fill: parent
-        }
-        state: "login"
-        states: [
-            State {
-                name: "login"
-                PropertyChanges { target: pageLoader; source: "Login.qml"; }
-            },
-            State {
-                name: "app"
-                PropertyChanges { target: pageLoader; source: "Users.qml"; }
+        RowLayout {
+            id: rowButtons
+            Layout.preferredHeight: 40
+            Layout.fillWidth: true
+            Button {
+                text: "Login"
+                onClicked: {
+                    mainRect.replace(loginPage)
+                }
             }
-        ]
+            Button {
+                text: "Users"
+                onClicked: {
+                    mainRect.replace(usersPage)
+                }
+            }
+        }
+
+        StackView {
+            id: mainRect
+            objectName: "mainRect"
+            Layout.preferredHeight: parent.height - rowButtons.height
+            Layout.fillWidth: true
+
+            initialItem: loginPage
+        }
     }
 }
