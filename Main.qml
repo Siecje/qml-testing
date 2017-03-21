@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 
 ApplicationWindow {
@@ -12,14 +12,15 @@ ApplicationWindow {
     minimumWidth: mainRect.implicitWidth;
     minimumHeight: mainRect.implicitHeight;
 
-    Users {
-        id: usersPage
-        visible: false
-    }
+    // Users {
+    //     id: usersPage
+    //     visible: false
+    // }
 
     Login {
         id: loginPage
         function onLogin(){
+          var usersPage = Qt.createQmlObject('Users { id: usersPage }', appWindow, 'Main.qml')
           mainRect.replace(usersPage);
           rowButtons.visible = true;
         }
