@@ -19,12 +19,17 @@ ApplicationWindow {
 
     Login {
         id: loginPage
+        function onLogin(){
+          mainRect.replace(usersPage);
+          rowButtons.visible = true;
+        }
     }
 
     ColumnLayout {
         anchors.fill: parent
         RowLayout {
             id: rowButtons
+            visible: false
             Layout.preferredHeight: 40
             Layout.fillWidth: true
             Button {

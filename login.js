@@ -13,11 +13,11 @@ function LoginManager() {
 
 function submitLogin() {
     var loginManager = new LoginManager();
-    
+
     loginManager.loginSuccess.connect(function(reply){
-        mainRect.state = "app";
+      loginPage.onLogin();
     });
-    
+
     loginManager.loginFailure.connect(function(reply){
         error.text = reply;
     });
@@ -27,7 +27,7 @@ function submitLogin() {
 
 function onLoad(){
     var loginManager = new LoginManager();
-    
+
     // Populate Server List
     loginManager.serverNames.connect(function(ServerNames){
         for(var i = 0;i<ServerNames.length;i++){
@@ -36,17 +36,16 @@ function onLoad(){
     });
 
     loginManager.GetServerNames();
-    
+
     // Populate Last Server
     loginManager.lastServer.connect(function(lastServer){
         if (lastServer != ""){
-            console.log(lastServer);
             cmbServers.currentIndex = cmbServers.find(lastServer);
         }
     });
-    
+
     loginManager.GetLastServerName();
-    
+
     // Populate Last Login
     loginManager.lastLogin.connect(function(lastLogin){
         if (lastLogin != ""){
@@ -54,6 +53,6 @@ function onLoad(){
             password.focus = true;
         }
     });
-    
+
     loginManager.GetLastLogin();
 }
