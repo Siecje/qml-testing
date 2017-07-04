@@ -1,7 +1,12 @@
+import os
 import sys
-import time
 import threading
+import time
+
 from PyQt5 import QtCore, QtGui, QtQml
+
+
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class LoginManager(QtCore.QObject):
@@ -43,8 +48,11 @@ class LoginManager(QtCore.QObject):
             self.lastServer.emit(serverName)
         threading.Thread(target=go).start()
 
+def main():
+    app = QtGui.QGuiApplication(sys.argv)
+    QtQml.qmlRegisterType(LoginManager, 'LoginManager', 1, 0, 'LoginManager')
+    engine = QtQml.QQmlApplicationEngine(os.path.join(THIS_DIR, "Main.qml"))
+    app.exec_()
 
-app = QtGui.QGuiApplication(sys.argv)
-QtQml.qmlRegisterType(LoginManager, 'LoginManager', 1, 0, 'LoginManager')
-engine = QtQml.QQmlApplicationEngine("Main.qml")
-app.exec_()
+if __name__ == '__main__':
+    main()

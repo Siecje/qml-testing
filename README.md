@@ -4,7 +4,7 @@ To demonstrate how to test and package a PyQt5 QML Application.
 
 ## Development Instructions
 
-## Linux
+### Linux
 
 ```shell
 git clone https://github.com/siecje/qml-testing
@@ -18,7 +18,7 @@ pip install PyQt5
 python main.py
 ```
 
-## Windows
+### Windows
 
 ```shell
 git clone https://github.com/siecje/qml-testing
