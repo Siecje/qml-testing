@@ -5,8 +5,10 @@ import time
 
 from PyQt5 import QtCore, QtGui, QtQml
 
-
-THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+if hasattr(sys, 'frozen'):
+    THIS_DIR = os.path.dirname(os.path.abspath(sys.executable))
+else:
+    THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class LoginManager(QtCore.QObject):
