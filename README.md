@@ -33,3 +33,17 @@ python main.py
 ```
 
 Then enter 'user' as the password.
+
+## Packaging
+
+### Windows
+
+- Install latest Python 3 (3.6.1 is currently out).
+- Install latest NSIS (3.0.1 is currently out) - http://nsis.sourceforge.net/Download
+
+```shell
+python -m venv venv
+call venv\Scripts\activate.bat
+pip install pynsist
+pynsist.exe installer.cfg
+```

@@ -1,3 +1,4 @@
 syntax: glob
 *.qmlc
 *.jsc
+*.pyc

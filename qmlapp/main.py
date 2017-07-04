@@ -53,6 +53,3 @@ def main():
     QtQml.qmlRegisterType(LoginManager, 'LoginManager', 1, 0, 'LoginManager')
     engine = QtQml.QQmlApplicationEngine(os.path.join(THIS_DIR, "Main.qml"))
     app.exec_()
-
-if __name__ == '__main__':
-    main()
