@@ -8,11 +8,11 @@ Item {
     
     signal loginSuccess()
     signal loginFailure()
-    
+
     signal serverNames(var serverNames)
     signal lastLogin(string login)
     signal lastServer(string server)
-    
+
     Component.onCompleted: {
         loginManager.serverNames(['One', 'Two']);
     }

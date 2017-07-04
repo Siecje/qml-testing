@@ -9,8 +9,8 @@ Item {
     objectName: "loginPage"
     width: 800;
     height: 600;
-    anchors.fill: parent;
-    
+    //anchors.fill: parent;
+
     ListModel {
         id: serverModel
         objectName: "serverModel"
@@ -20,7 +20,7 @@ Item {
                                })
         }
     }
-    
+
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -29,13 +29,13 @@ Item {
         Column {
             spacing: 20
             anchors.horizontalCenter: parent.horizontalCenter
-            
+
             ComboBox {
                 id: cmbServers
                 objectName: "cmbServers"
                 model: serverModel
             }
-            
+
             TextField {
                 id: login
                 objectName: "login"
@@ -46,7 +46,7 @@ Item {
                     btnSubmit.clicked()
                 }
             }
-            
+
             TextField {
                 id: password
                 objectName: "password"
@@ -57,7 +57,7 @@ Item {
                     btnSubmit.clicked()
                 }
             }
-            
+
             Button {
                 id: btnSubmit
                 objectName: "btnSubmit"
@@ -67,7 +67,7 @@ Item {
                     App.submitLogin();
                 }
             }
-            
+
             Label {
                 id: error
                 objectName: "error"
