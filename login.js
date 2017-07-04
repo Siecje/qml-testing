@@ -5,16 +5,11 @@ function LoginManager() {
                               appWindow, "LoginManager");
 }
 
-//function LoginManager(){
-//    eventsNotifier = Qt.createQmlObject('import QtQuick 2.0; QtObject { signal loginSuccess;signal loginFailure;signal serverNames(var serverNames);signal lastLogin(string login);signal lastServer(string server) }', Qt.application);
-//    return eventsNotifier;
-//}
-
-
 function submitLogin() {
     var loginManager = new LoginManager();
 
     loginManager.loginSuccess.connect(function(reply){
+      error.text = "";
       loginPage.onLogin();
     });
 

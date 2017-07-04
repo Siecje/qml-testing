@@ -12,15 +12,14 @@ ApplicationWindow {
     minimumWidth: mainRect.implicitWidth;
     minimumHeight: mainRect.implicitHeight;
 
-    // Users {
-    //     id: usersPage
-    //     visible: false
-    // }
+    Users {
+        id: usersPage
+        visible: false
+    }
 
     Login {
         id: loginPage
         function onLogin(){
-          var usersPage = Qt.createQmlObject('Users { id: usersPage }', appWindow, 'Main.qml')
           mainRect.replace(usersPage);
           rowButtons.visible = true;
         }
@@ -36,13 +35,17 @@ ApplicationWindow {
             Button {
                 text: "Login"
                 onClicked: {
-                    mainRect.replace(loginPage)
+                    if(mainRect.currentItem != loginPage){
+                        mainRect.replace(loginPage);
+                    }
                 }
             }
             Button {
                 text: "Users"
                 onClicked: {
-                    mainRect.replace(usersPage)
+                    if(mainRect.currentItem != usersPage){
+                        mainRect.replace(usersPage);
+                    }
                 }
             }
         }
