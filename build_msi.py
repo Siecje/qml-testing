@@ -37,12 +37,11 @@ def BuildMsi(Naame, BuildDir, WxsPath, WxsName):
 
 if __name__ == "__main__":
     shutil.rmtree(os.path.join(THIS_DIR, "build"), ignore_errors = True)
-    
+
     python32 = platform.architecture()[0] == "32bit"
     if python32:
         origPath = os.environ["PATH"]
         newPath = Removex64Paths(os.environ["PATH"])
-        os.environ["PATH"] = r"C:\Users\cody\Desktop\pynsist\nsist\msvcrt\x86" + os.pathsep + newPath
 
     BuildExe(version,
              Name,
@@ -52,7 +51,7 @@ if __name__ == "__main__":
             )
     if python32:
         os.environ["PATH"] = origPath
-    buildDir = os.path.join(THIS_DIR, "build", "exe.win32-3.5")
+    buildDir = os.path.join(THIS_DIR, "build", "exe.win32-3.6")
     wxsPath = os.path.join(THIS_DIR, "wix", "QMLApp.wxs")
     wxsName = "QMLApp"
     BuildMsi(Name, buildDir, wxsPath, wxsName)
