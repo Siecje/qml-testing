@@ -36,7 +36,17 @@ Then enter 'user' as the password.
 
 ## Packaging
 
-On Windows in ```cmd```
+On Windows in `cmd`
+
+### Install .NET for Wix
+
+https://www.microsoft.com/en-US/Download/confirmation.aspx?id=17718
+
+### Install Wix
+
+http://wixtoolset.org/releases/
+
+### Create .msi
 
 ```shell
 python -m venv venv
@@ -50,4 +60,4 @@ To create .msi
 python build_msi.py
 ```
 
-```wix\QML.msi``` will be created.
+`wix\QML.msi` will be created.
