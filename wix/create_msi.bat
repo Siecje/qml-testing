@@ -6,7 +6,7 @@
 :: cmd> call create_msi.bat Application /full/path/to/app/dir/with/exe/ /path/to/app.wxs app
 
 setlocal
-set PATH=C:\Program Files (x86)\WiX Toolset v3.10\bin;%PATH%
+set PATH=C:\Program Files (x86)\WiX Toolset v3.11\bin;%PATH%
 set msiName=%1
 set BuildDir=%2
 set WxsFile=%3
