@@ -9,7 +9,7 @@
 <?define InstallDir = "QMLApplication"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" UpgradeCode="$(var.ProductUpgradeCode)" 
+  <Product Id="*" UpgradeCode="$(var.ProductUpgradeCode)"
            Name="$(var.ProductName)" Version="$(var.ProductVersion)" Manufacturer="$(var.CompanyName)" Language="1033">
     <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package"/><!-- InstallScope="perUser" InstallPrivileges="limited"/> -->
     <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
@@ -19,13 +19,9 @@
     <Property Id="ARPURLINFOABOUT" Value="http://www.examplecompany.com"/>
     <Property Id="ARPNOREPAIR" Value="1"/>
     <Property Id="ARPNOMODIFY" Value="1"/>
-    <Upgrade Id="$(var.ProductUpgradeCode)">
-      <UpgradeVersion Minimum="$(var.ProductVersion)" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
-      <UpgradeVersion Minimum="0.0.0" Maximum="$(var.ProductVersion)" IncludeMinimum="yes" IncludeMaximum="no" 
-                      Property="OLDERVERSIONBEINGUPGRADED"/>
-    </Upgrade>
-    <Condition Message="A newer version of this software is already installed.">NOT NEWERVERSIONDETECTED</Condition>
- 
+
+    <MajorUpgrade DowngradeErrorMessage="A later version of is already installed. Setup will now exit."/>
+
     <Feature Id="ProgramFiles">
       <ComponentGroupRef Id="FromHeat" />
     </Feature>
@@ -36,11 +32,7 @@
         <Directory Id="INSTALLDIR" Name="$(var.InstallDir)"></Directory>
       </Directory>
     </Directory>
- 
-    <InstallExecuteSequence>
-      <RemoveExistingProducts After="InstallValidate"/>
-    </InstallExecuteSequence>
-    <!-- 
+    <!--
     <Feature Id="DefaultFeature" Level="1">
       <ComponentRef Id="ApplicationShortcuts"/>
     </Feature>
