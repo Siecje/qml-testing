@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.1
 
 Item {
     id: loginManager
-    
+
     signal loginSuccess()
     signal loginFailure()
 
