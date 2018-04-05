@@ -22,7 +22,7 @@ class LoginManager(QtCore.QObject):
     @QtCore.pyqtSlot(str, str, str)
     def Login(self, Login, Password, ServerName):
         def thread(Login, Password, ServerName):
-            if Password != "user":
+            if Password == "":
                 self.loginFailure.emit("Invalid Credentials")
             else:
                 self.loginSuccess.emit("SUCCESS!")
