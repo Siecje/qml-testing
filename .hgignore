@@ -2,3 +2,4 @@ syntax: glob
 *.qmlc
 *.jsc
 venv/*
+__pycache__/*
