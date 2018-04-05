@@ -3,3 +3,5 @@ syntax: glob
 *.jsc
 venv/*
 __pycache__/*
+build/*
+dist/*
