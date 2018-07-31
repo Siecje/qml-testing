@@ -6,39 +6,78 @@ block_cipher = None
 
 this_dir = os.path.abspath(os.path.dirname("__file__"))
 
-a = Analysis(['main.py'],
+datas = [
+    (os.path.join(this_dir, "login.js"), "."),
+    (os.path.join(this_dir, "Login.qml"), "."),
+    (os.path.join(this_dir, "LoginManager.qml"), "."),
+    (os.path.join(this_dir, "Main.qml"), "."),
+    (os.path.join(this_dir, "Users.qml"), "."),
+]
+
+hidden_imports = [
+     "PyQt5.QtQuick", "PyQt5.QtQml",
+]
+
+a_main = Analysis(['main.py'],
              pathex=[this_dir],
              binaries=[],
-             datas=[
-                 (os.path.join(this_dir, "login.js"), "."),
-                 (os.path.join(this_dir, "Login.qml"), "."),
-                 (os.path.join(this_dir, "LoginManager.qml"), "."),
-                 (os.path.join(this_dir, "Main.qml"), "."),
-                 (os.path.join(this_dir, "Users.qml"), "."),
-             ],
-             hiddenimports=[
-                  "PyQt5.QtQuick", "PyQt5.QtQml",
-             ],
+             datas=datas,
+             hiddenimports=hidden_imports,
              hookspath=[],
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
              cipher=block_cipher)
-pyz = PYZ(a.pure, a.zipped_data,
+a_main2 = Analysis(['main2.py'],
+             pathex=[this_dir],
+             binaries=[],
+             datas=datas,
+             hiddenimports=hidden_imports,
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=[],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
              cipher=block_cipher)
-exe = EXE(pyz,
-          a.scripts,
+MERGE( (a_main, 'main', 'main'),
+     (a_main2, 'main2', 'main2'),
+)
+
+
+
+pyz_main = PYZ(a_main.pure, a_main.zipped_data,
+             cipher=block_cipher)
+exe_main = EXE(pyz_main,
+          a_main.scripts,
           exclude_binaries=True,
           name='main',
           debug=False,
           strip=False,
           upx=True,
           console=True )
-coll = COLLECT(exe,
-               a.binaries,
-               a.zipfiles,
-               a.datas,
+coll_main = COLLECT(exe_main,
+               a_main.binaries,
+               a_main.zipfiles,
+               a_main.datas,
                strip=False,
                upx=True,
                name='main')
+
+pyz_main2 = PYZ(a_main2.pure, a_main2.zipped_data,
+            cipher=block_cipher)
+exe_main2 = EXE(pyz_main2,
+         a_main2.scripts,
+         exclude_binaries=True,
+         name='main',
+         debug=False,
+         strip=False,
+         upx=True,
+         console=True )
+coll_main2 = COLLECT(exe_main2,
+              a_main2.binaries,
+              a_main2.zipfiles,
+              a_main2.datas,
+              strip=False,
+              upx=True,
+              name='main2')
