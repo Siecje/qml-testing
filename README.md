@@ -33,3 +33,11 @@ python main.py
 ```
 
 Then enter 'user' as the password.
+
+### Packaging
+
+```
+pyinstaller main.spec
+```
+
+Executable will be in `dist\main\`.
