@@ -46,7 +46,8 @@ MERGE( (a_main, 'main', 'main'),
 
 
 
-pyz_main = PYZ(a_main.pure, a_main.zipped_data,
+pyz_main = PYZ(a_main.pure,
+               a_main.zipped_data,
                cipher=block_cipher)
 exe_main = EXE(pyz_main,
                a_main.scripts,
@@ -55,16 +56,10 @@ exe_main = EXE(pyz_main,
                debug=False,
                strip=False,
                upx=True,
-               console=True )
-coll_main = COLLECT(exe_main,
-                    a_main.binaries,
-                    a_main.zipfiles,
-                    a_main.datas,
-                    strip=False,
-                    upx=True,
-                    name='main')
+               console=True)
 
-pyz_main2 = PYZ(a_main2.pure, a_main2.zipped_data,
+pyz_main2 = PYZ(a_main2.pure,
+                a_main2.zipped_data,
                 cipher=block_cipher)
 exe_main2 = EXE(pyz_main2,
                 a_main2.scripts,
@@ -73,11 +68,15 @@ exe_main2 = EXE(pyz_main2,
                 debug=False,
                 strip=False,
                 upx=True,
-                console=True )
-coll_main2 = COLLECT(exe_main2,
-                     a_main2.binaries,
-                     a_main2.zipfiles,
-                     a_main2.datas,
-                     strip=False,
-                     upx=True,
-                     name='main')
+                console=True)
+
+coll_all = COLLECT(exe_main,
+                   a_main.binaries,
+                   a_main.zipfiles,
+                   a_main.datasexe_main2,
+                   a_main2.binaries,
+                   a_main2.zipfiles,
+                   a_main2.datas,
+                   strip=False,
+                   upx=True,
+                   name='main')
